@@ -1,0 +1,14 @@
+image: python:3.8-slim-buster
+
+cache:
+  paths:
+    - .cache/pip
+
+stages:
+  - unit-test
+
+test message-requests:
+  stage: unit-test
+  script:
+    - pip3 install flask
+    - python test_app.py
