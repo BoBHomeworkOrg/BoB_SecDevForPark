@@ -1,0 +1,25 @@
+image: python:3.6-stretch
+
+before_script:
+  - python --version
+
+stages:
+  - lint
+  - unit_test
+  - deploy_aws
+
+flake8:
+  stage: lint
+  script:
+  - pip install flake8
+  - flake8 *.py
+
+test:
+  stage: unit_test
+  script:
+  - python -m unittest -v hello_test
+
+deploy:
+  stage: deploy_aws
+  script:
+  - echo "${AWS_URL} ${AWS_ACCESS_KEY}"
